@@ -28,6 +28,7 @@ import miniufo.descriptor.DataDescriptor;
 import miniufo.diagnosis.DiagnosisFactory;
 import miniufo.diagnosis.MDate;
 import miniufo.diagnosis.SpatialModel;
+import miniufo.diagnosis.Variable;
 import miniufo.io.IOUtil;
 import miniufo.io.TextReader;
 import miniufo.util.GridDataFetcher;
@@ -77,8 +78,8 @@ public final class Decode{
 		GridDataFetcher gdf=new GridDataFetcher(dd);
 		RadarStation rs=scan.getRadarStation();
 		
-		float[][][] uo=gdf.prepareXYZBuffer("u",1,1,23,5);
-		float[][][] vo=gdf.prepareXYZBuffer("v",1,1,23,5);
+		Variable uo=gdf.prepareXYZBuffer("u",1,1,23,5);
+		Variable vo=gdf.prepareXYZBuffer("v",1,1,23,5);
 		
 		for(int k=0,K=scan.getValidVelCuts();k<K;k++){
 			ElevationCut ec=scan.getValidVelElev(k);
@@ -610,7 +611,7 @@ public final class Decode{
 	
 	/*** test ***/
 	public static void main(String[] args){
-		//Haikou();
+		Haikou();
 		Sanya();
 	}
 	
@@ -627,17 +628,17 @@ public final class Decode{
 		Decode dcd=new Decode(scan,DealiaseWay.Sanya);
 		//plt.velDataToGS(new RadarColorBar(-44,44,4),"d:/SanyaVel.gs");
 		
-		dcd.dealiasing();
+		//dcd.dealiasing();
 		
 		//plt.refDataToGS(RadarColorBar.RefBar       ,"d:/SanyaRef.gs");
 		//plt.velDataToGS(new RadarColorBar(-44,44,4),"d:/SanyaVel_de.gs");
 		//plt.spwDataToGS(RadarColorBar.SpwBar       ,"d:/SanyaSpw.gs");
 		
-		//dcd.innovation(path+"Rammasun/");
+		dcd.innovation(path+"Rammasun/");
 		//dcd.baseData2SuperObsInput(path+"Rammasun/nceptest_vel_Sanya.txt");
 		//dcd.superObsInput2GS(path+"Rammasun/nceptest_vel_Sanya.txt",path+"Rammasun/Decode/superObsInput_Sanya.gs");
 		//dcd.superObsOutput2GS(path+"Rammasun/radar_supobs_from_level2.txt",path+"Rammasun/Decode/superObsOutput_All.gs");
-		dcd.setuprw2GS(path+"Rammasun/ExpHigh/rwLclm2/radarobs",path+"Rammasun/ExpHigh/rwLclm2/");
+		//dcd.setuprw2GS(path+"Rammasun/ExpHigh/rwLclm2/radarobs",path+"Rammasun/ExpHigh/rwLclm2/");
 	}
 	
 	static void Haikou(){
@@ -656,14 +657,14 @@ public final class Decode{
 		Decode dcd=new Decode(scan,DealiaseWay.Haikou);
 		
 		//plt.velDataToGS(new RadarColorBar(-44,44,4),"d:/HaikouVel.gs");
-		dcd.dealiasing();
+		//dcd.dealiasing();
 		//plt.refDataToGS(RadarColorBar.RefBar       ,"d:/HaikouRef.gs");
 		//plt.velDataToGS(new RadarColorBar(-44,44,4),"d:/HaikouVel_de.gs");
 		//plt.spwDataToGS(RadarColorBar.SpwBar       ,"d:/HaikouSpw.gs");
 		
-		//dcd.innovation(path+"Rammasun/");
-		dcd.baseData2SuperObsInput(path+"Rammasun/nceptest_vel_Haikou.txt");
-		dcd.superObsInput2GS(path+"Rammasun/nceptest_vel_Haikou.txt",path+"Rammasun/Decode/superObsInput_Haikou.gs");
+		dcd.innovation(path+"Rammasun/");
+		//dcd.baseData2SuperObsInput(path+"Rammasun/nceptest_vel_Haikou.txt");
+		//dcd.superObsInput2GS(path+"Rammasun/nceptest_vel_Haikou.txt",path+"Rammasun/Decode/superObsInput_Haikou.gs");
 		//dcd.superObsOutput2GS(path+"Rammasun/radar_supobs_from_level2.txt",path+"Rammasun/Decode/superObsOutput_All.gs");
 		//dcd.setuprw2GS(path+"Rammasun/radarobs",path+"Haikou/");
 		

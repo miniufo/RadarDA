@@ -23,13 +23,13 @@ public final class BestTrack{
 	
 	/*** test ***/
 	public static void main(String[] args){
-		Variable[] cma    =getIntensity(path+"Rammasun_CMAInterp.txt",0,49,5,4);
-		Variable[] jma    =getIntensity(path+"Rammasun_JMAInterp.txt",0,49,5,4);
-		Variable[] ctrl   =getIntensity(path+"Rammasun_ctrl.txt"     ,0,49,5,4);
-		Variable[] rwGlb  =getIntensity(path+"Rammasun_rwGlb.txt"    ,6,49,5,4);
-		Variable[] rwLcl  =getIntensity(path+"Rammasun_rwLcl.txt"    ,6,49,5,4);
-		Variable[] rwLcld2=getIntensity(path+"Rammasun_rwLcld2.txt"  ,6,49,5,4);
-		Variable[] rwLclm2=getIntensity(path+"Rammasun_rwLclm2.txt"  ,6,49,5,4);
+		Variable[] cma    =getIntensity(path+"Rammasun_CMAInterp.txt",0,49,7,6);
+		Variable[] jma    =getIntensity(path+"Rammasun_JMAInterp.txt",0,49,7,6);
+		Variable[] ctrl   =getIntensity(path+"Rammasun_ctrl.txt"     ,0,49,7,6);
+		Variable[] rwGlb  =getIntensity(path+"Rammasun_rwGlb.txt"    ,6,49,7,6);
+		Variable[] rwLcl  =getIntensity(path+"Rammasun_rwLcl.txt"    ,6,49,7,6);
+		Variable[] rwLcld2=getIntensity(path+"Rammasun_rwLcld2.txt"  ,6,49,7,6);
+		Variable[] rwLclm2=getIntensity(path+"Rammasun_rwLclm2.txt"  ,6,49,7,6);
 		
 		Variable    ctrlErrJ=getTrackErrors(path+"Rammasun_ctrl.txt"   ,path+"Rammasun_JMAInterp.txt",0);
 		Variable   rwGlbErrJ=getTrackErrors(path+"Rammasun_rwGlb.txt"  ,path+"Rammasun_JMAInterp.txt",6);
@@ -61,8 +61,8 @@ public final class BestTrack{
 	}
 	
 	static Variable getTrackErrors(String expName,String stdName,int strIdx){
-		String[][] dataExp=TextReader.readColumnsS(expName,true,1,2,3);
-		String[][] dataStd=TextReader.readColumnsS(stdName,true,1,2,3);
+		String[][] dataExp=TextReader.readColumnsS(expName,true,1,2,5);
+		String[][] dataStd=TextReader.readColumnsS(stdName,true,1,2,5);
 		
 		int lines=dataExp[0].length;
 		
@@ -79,7 +79,7 @@ public final class BestTrack{
 			float lon2=Float.parseFloat(dataStd[0][strIdx+i]);
 			float lat2=Float.parseFloat(dataStd[1][strIdx+i]);
 			
-			long tim1=Long.parseLong(dataExp[2][i]);
+			long tim1=Long.parseLong(dataExp[2][i]+"00");
 			long tim2=Long.parseLong(dataStd[2][i+strIdx]);
 			
 			if(tim1!=tim2) throw new IllegalArgumentException(tim1+" != "+tim2);
