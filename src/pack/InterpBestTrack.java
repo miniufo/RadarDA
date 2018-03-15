@@ -46,8 +46,8 @@ public final class InterpBestTrack{
 			
 			Record r=new Record(time,lon,lat,4);
 			
-			r.setData(2,wnd);
-			r.setData(3,slp);
+			r.setData(Typhoon.Vmax,wnd);
+			r.setData(Typhoon.Pmin,slp);
 			
 			ls.add(r);
 		}
